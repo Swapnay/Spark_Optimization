@@ -1,14 +1,14 @@
 Spark Optimization:
 
-** 1:** Standalone spark with:
+** 1: ** Standalone spark with:
                 Master: 15 GB memory and 12 Cores
                 Worker: 1 GB per executor 6 cores per executor.
 
-** 2:** Spark submit command used.
+** 2: ** Spark submit command used.
 
 ```bin/spark-submit  --master spark://Host:7077 optimize.py```
 
-**1. Resource Tuning ** [Here](https://blog.cloudera.com/how-to-tune-your-apache-spark-jobs-part-2/)
+** 1. Resource Tuning  ** [Here](https://blog.cloudera.com/how-to-tune-your-apache-spark-jobs-part-2/)
     * Since spark was running in stand alone mode, increasing the number of executors had negative effect on performance.
     * having 2 worker nodes with 1 executor and 6 core took 14 sec to complete the job where as having single worker node with 2 executors took 13 seconds to complete
     * When number of executors were increased to 10 with single core, job took more than 30 seconds to complete
@@ -30,4 +30,5 @@ Spark Optimization:
 ** Limiting shuffle partitions **
    * I see that by default number of partitions are 200.That will cause lot of shuffle.Using  ```spark.sql.shuffle.partitions``` config option number of shuffle partitions can be controlled.
    * setting this to less than 20 had 2 second performance gain.
+Overall the job took about 9 seconds after tuning, which is about 5 seconds less than original 14 seconds.
 
