@@ -21,9 +21,9 @@ spark.conf.set("spark.sql.shuffle.partitions",20)
 base_path = os.getcwd()
 
 project_path = ('/').join(base_path.split('/')[0:-3])
-answers_input_path = os.path.join('file:////'+ 'Users/syeruvala/Exercism/python/Spark_Optimization', 'data/answers')
+answers_input_path = os.path.join(project_path, 'data/answers')
 
-questions_input_path = os.path.join('file:////'+'Users/syeruvala/Exercism/python/Spark_Optimization', 'data/questions')
+questions_input_path = os.path.join(project_path, 'data/questions')
 
 answersDF = spark.read.option('path', answers_input_path).load()
 
